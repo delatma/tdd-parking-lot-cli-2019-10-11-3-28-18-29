@@ -79,11 +79,27 @@ class ParkingBoyFacts {
         ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
 
         //when
-        ParkingTicket noTicket = null;
-        Car fetchedCar = parkingboy.fetch(noTicket);
+        Car fetchedCar = parkingboy.fetch(null);
 
         //then
         assertNull(fetchedCar);
+    }
+
+//    AC4: If the customer gives a ticket that has already been used. Then no car should be fetched.
+    @Test
+    void should_parking_boy_fetch_no_car_when_ticket_has_been_used() {
+        //given
+        ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
+        Car myCar = new Car();
+
+        //when
+        ParkingTicket myTicket = parkingboy.park(myCar);
+        Car validFetchedCar = parkingboy.fetch(myTicket);
+        Car secondUseOfTicket = parkingboy.fetch(myTicket);
+
+        //then
+        assertNotNull(validFetchedCar);
+        assertNull(secondUseOfTicket);
     }
 
 }
