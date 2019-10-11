@@ -10,16 +10,15 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        // TODO: Please implement the method
-        throw new RuntimeException("Not implemented");
+        return new ParkingTicket();
     }
 
     public Car fetch(ParkingTicket ticket) {
-        // TODO: Please implement the method
-        throw new RuntimeException("Not implemented");
+        return new Car();
     }
 
     public String getLastErrorMessage() {
         return lastErrorMessage;
     }
+
 }
