@@ -61,8 +61,29 @@ class ParkingBoyFacts {
 //    AC3: If the customer gives a wrong ticket (the parking boy did not provide the ticket) or does not give a ticket.
 //    Then no car should be fetched.
     @Test
-    void should_parking_boy_fetch_the_correct_car() {
+    void should_parking_boy_fetch_no_car() {
+        //given
+        ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
+
+        //when
+        ParkingTicket wrongTicket = new ParkingTicket();
+        Car fetchedCar = parkingboy.fetch(wrongTicket);
+
+        //then
+        assertNull(fetchedCar);
     }
 
+    @Test
+    void should_parking_boy_fetch_no_car_when_ticket_is_null() {
+        //given
+        ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
+
+        //when
+        ParkingTicket noTicket = null;
+        Car fetchedCar = parkingboy.fetch(noTicket);
+
+        //then
+        assertNull(fetchedCar);
+    }
 
 }
