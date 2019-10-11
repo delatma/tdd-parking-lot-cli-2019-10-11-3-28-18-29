@@ -39,19 +39,29 @@ class ParkingBoyFacts {
         assertNotNull(fetchedCar);
     }
 
+//    AC2: The parking boy can park multiple cars into the parking lot.
+//    And can fetch right car using correspond ticket.
     @Test
-    void should_parking_boy_fetch_the_correct_car() {
+    void should_be_able_to_park_multiple_cars_to_parking_lot_by_parking_boy() {
         //given
-        Car car = new Car();
+        Car myCar = new Car();
+        Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //when
-        ParkingTicket parkingTicket = parkingBoy.park(car);
-        Car fetchedCar = parkingBoy.fetch(parkingTicket);
+        ParkingTicket myparkingTicket = parkingBoy.park(myCar);
+        parkingBoy.park(car2);
+        Car fetchedCar = parkingBoy.fetch(myparkingTicket);
 
         //then
-        assertNotNull(fetchedCar);
+        assertEquals(fetchedCar, myCar);
+    }
+
+//    AC3: If the customer gives a wrong ticket (the parking boy did not provide the ticket) or does not give a ticket.
+//    Then no car should be fetched.
+    @Test
+    void should_parking_boy_fetch_the_correct_car() {
     }
 
 
