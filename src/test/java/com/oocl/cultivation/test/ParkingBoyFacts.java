@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//story 1
 class ParkingBoyFacts {
     @Test
     void should_parking_boy_park_a_car_to_parking_lot() {
@@ -61,7 +62,7 @@ class ParkingBoyFacts {
 //    AC3: If the customer gives a wrong ticket (the parking boy did not provide the ticket) or does not give a ticket.
 //    Then no car should be fetched.
     @Test
-    void should_parking_boy_fetch_no_car() {
+    void should_parking_boy_fetch_no_car_if_ticket_is_wrong() {
         //given
         ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
 
@@ -71,6 +72,7 @@ class ParkingBoyFacts {
 
         //then
         assertNull(fetchedCar);
+
     }
 
     @Test
@@ -121,6 +123,36 @@ class ParkingBoyFacts {
 
         //then
         assertNull(parkingboy.getLastErrorMessage(), "No available position");
+    }
+
+    //story 2
+    //AC1: When the customer gives a wrong ticket
+    //(the parking boy does not provide the ticket/the ticket has been used).
+    //Then no car should be fetched.
+    //If I query the error message, I can get an "Unrecognized parking ticket.".
+
+    @Test
+    void should_return_no_car_if_ticket_is_wrong() {
+        //given
+        ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
+        ParkingTicket wrongTicket = new ParkingTicket();
+
+        //when
+        Car fetchedCar = parkingboy.fetch(wrongTicket);
+
+        //then
+        assertNull(fetchedCar);
+    }
+
+    //    AC2: When the customer does not provide a ticket when fetching a car.
+    //    The error message should be "Please provide your parking ticket."
+    @Test
+    public void should_create_error_message_when_parking_boy_is_given_no_ticket() {
+        ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
+
+        parkingboy.fetch(null);
+
+        assertEquals(parkingboy.getLastErrorMessage(), "Please provide your parking ticket");
     }
 
 }
