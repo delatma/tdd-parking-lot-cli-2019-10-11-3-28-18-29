@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,9 @@ public class ParkingLot {
 
     public ParkingTicket park(Car car){
         ParkingTicket ticket = new ParkingTicket();
+        if(cars.size()>= capacity) {
+            return null;
+        }
         cars.put(ticket, car);
         return ticket;
     }

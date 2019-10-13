@@ -102,4 +102,24 @@ class ParkingBoyFacts {
         assertNull(secondUseOfTicket);
     }
 
+//    AC5: The parking lot has a capacity (the default capacity of a parking lot is 10).
+//    If there is no position, then the user cannot park the car into it. Thus (s)he will not get any ticket.
+    @Test
+    void should_return_no_ticker_when_parking_lot_has_no_free_space() {
+        //given
+        ParkingBoy parkingboy = new ParkingBoy(new ParkingLot());
+        while (true){
+            if(parkingboy.park(new Car()) == null){
+                break;
+            }
+        }
+        Car myCar = new Car();
+
+        //when
+        parkingboy.park(myCar);
+
+        //then
+        assertNull(parkingboy.getLastErrorMessage(), "No available position");
+    }
+
 }
