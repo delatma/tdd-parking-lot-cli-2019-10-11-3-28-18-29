@@ -117,6 +117,7 @@ class ParkingBoyFacts {
 
         //when
         parkingboy.park(myCar);
+        parkingboy.park(null);
 
         //then
         assertNull(parkingboy.getLastErrorMessage(), "No available position");
